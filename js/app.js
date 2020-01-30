@@ -20,7 +20,7 @@ function game(){
     const numberGame = numFromGame();
  
     function counter() {
-        let counter = 3;
+        let counter = 11;
         const decrementCounter = function () {
             counter = counter -1;
             return counter; 
@@ -58,7 +58,7 @@ function game(){
        }            
     }
     function counterZero(n) {
-        if (n == 0) {
+        if (n == 1) {
             let answer = confirm('Попытки закончились, хотите сыграть еще?');
             (answer) ? game() : endGame();
             
