@@ -3,7 +3,7 @@ let isNumber = function (number) {
     return !isNaN(parseFloat(number)) && isFinite(parseFloat(number));
 }
 
-game();
+// game();
 
 function game(){
 
@@ -18,58 +18,36 @@ function game(){
     const numFromGame = getNumberMath();
     const numberGame = numFromGame();
 
-    let enterNumber = prompt('Угадай число от 1 до 100');
 
     function checkAnsver(){
         
-        userAnsver(enterNumber);
-    }
+        let enterNumber = +prompt('Угадай число от 1 до 100');
 
-    checkAnsver();
-    console.log();
+        console.log(enterNumber,+' '+ numberGame );
 
-    function userAnsver(enterNumber) {
-
-        console.log(enterNumber,numberGame);
-        if (enterNumber === null) {
-            endGame()
+        (!isNumber(enterNumber)) ? (alert('Нужно ввести число'), checkAnsver()):''; 
+        if (enterNumber === 0) {
+            console.log ('Игра окончена')
+        }else if (enterNumber < numberGame) {
+            alert('Загаданное число больше'); 
+            checkAnsver();
+        } else if (enterNumber > numberGame) {
+            alert('Загаданное число меньше'); 
+            checkAnsver();
+        } else {
+            alert('победа');
         }
-        (!isNumber(enterNumber)) ? enterText():
-        (+enterNumber === numberGame) ? win() : 
-        (+enterNumber < numberGame) ? questNumberMin():
-        (+enterNumber > numberGame) ? questNumberMax(): null;
+
+       
 
     }
 
-    function win() {
-        alert('Победа');
-    }
+    return checkAnsver;
 
-    function endGame(params) {
-        alert('Вот и поиграли число было : ' + numberGame);
-    }
-
-    function questNumber() {
-        enterNumber = prompt('Угадай число от 1 до 100');
-        userAnsver(enterNumber);
-    }
-    function enterText() {
-        enterNumber = prompt('Введи число!');
-        userAnsver(enterNumber);
-    }
-
-    function questNumberMin() {
-        enterNumber = prompt('Загаданное число больше');
-        userAnsver(enterNumber);
-    }
-    function questNumberMax() {
-        enterNumber = prompt('Загаданное число меньше');
-        userAnsver(enterNumber);
-    }
+    
     
 }
 
-// game();
+play = game();
 
-
-
+play();
