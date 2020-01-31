@@ -54,7 +54,6 @@ function game(){
         (+enterNumber === numberGame) ? win() : 
         (+enterNumber < numberGame) ? questNumberMin():
         (+enterNumber > numberGame) ? questNumberMax(): null;
-           
        }            
     }
     function counterZero(n) {
@@ -80,7 +79,7 @@ function game(){
     function questNumber() {
         counterZero(userCounterAnswer);
         let answer = +prompt('Угадай число от 1 до 100, осталось попыток ...'+ userCounterAnswer);
-        ( !isNumber(answer) ) ? enterText(): (answer === 0) ? endGame():      
+        ( !isNumber(answer) || answer === '') ? enterText(): (answer === 0) ? endGame():      
         userAnsver(answer);
     }
     function enterText() {
