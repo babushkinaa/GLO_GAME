@@ -17,7 +17,7 @@ function game(){
     const numberGame = numFromGame();
  
     function counter() {
-        let counter = 3;
+        let counter = 10;
         const decrementCounter = function () {
             counter = counter -1;
             return counter; 
