@@ -26,6 +26,7 @@ function game(){
     }
 
     checkAnsver();
+    console.log();
 
     function userAnsver(enterNumber) {
 
