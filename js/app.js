@@ -3,9 +3,6 @@ let isNumber = function (number) {
     return !isNaN(parseFloat(number)) && isFinite(parseFloat(number));
 }
 
-game();
-
-
 function game(){
 
     function getNumberMath() {
@@ -20,7 +17,7 @@ function game(){
     const numberGame = numFromGame();
  
     function counter() {
-        let counter = 11;
+        let counter = 1;
         const decrementCounter = function () {
             counter = counter -1;
             return counter; 
@@ -28,81 +25,81 @@ function game(){
         return decrementCounter;
     }
 
-    const decrementCounterAnswer = counter();
-
-    let userCounterAnswer;
-
-    function counterAnswer () {
-        const counterAnswer = decrementCounterAnswer();
-        console.log( 'осталось ответов', counterAnswer);
-        userCounterAnswer = counterAnswer;
-        return counterAnswer;
+    function start() {
+        const enterGame = () => game();
     }
 
-    userCounterAnswer = counterAnswer();
-    let enterNumber;
-    let finish = false;
-    questNumber()
+    const decrementCounterAnswer = counter();
+ 
 
     function checkAnsver(){
-       userAnsver(enterNumber);
-    }
-    checkAnsver();
-    function userAnsver(enterNumber) {
-        console.log(enterNumber,numberGame);
-       if (!finish) {
-        (+enterNumber === numberGame) ? win() : 
-        (+enterNumber < numberGame) ? questNumberMin():
-        (+enterNumber > numberGame) ? questNumberMax(): null;
-       }            
-    }
-    function counterZero(n) {
-        if (n == 1) {
-            let answer = confirm('Попытки закончились, хотите сыграть еще?');
-            (answer) ? game() : endGame();
-            
-        }  
-    }
-    function win() {
-        let answer = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?"');
-        console.log(answer);
-        (answer) ? game() : quitGame(); 
-    }
-    function quitGame() {
-        finish = true; 
-        alert (' Спасибо за игру');
-    }
-    function endGame() {
-        alert('Вот и поиграли число было : ' + numberGame);
-        quitGame(); 
-    }
-    function questNumber() {
-        counterZero(userCounterAnswer);
-        let answer = +prompt('Угадай число от 1 до 100, осталось попыток ...'+ userCounterAnswer);
-        ( !isNumber(answer) || answer === '') ? enterText(): (answer === 0) ? endGame():      
-        userAnsver(answer);
-    }
-    function enterText() {
-        alert('Введи число!');
-        questNumber();
-    }
-    function questNumberMin() {
-        counterZero(userCounterAnswer);
-        userCounterAnswer = counterAnswer();
-        let answer = +prompt('Загаданное число больше, осталось попыток ...' + userCounterAnswer);
-        ( !isNumber(answer) ) ? enterText(): (answer === 0) ? endGame():
-        userAnsver(answer);
-    }
-    function questNumberMax() {
-        // counterZero(userCounterAnswer);
-        userCounterAnswer = counterAnswer();
-        counterZero(userCounterAnswer);
-        let answer = +prompt('Загаданное число меньше, осталось попыток ...' + userCounterAnswer);
-        ( !isNumber(answer) ) ? enterText(): (answer === 0) ? endGame():
-        userAnsver(answer);
+
+
+        // (userCounterAnswer === 0) ? console.log ('Игра окончена'):'';
+
+        
+        let enterNumber = prompt('Угадай число от 1 до 100');
+        if (enterNumber === null) {
+            console.log ('Игра окончена null');
+            return;
+        }
+     
+        console.log(enterNumber,+' '+ numberGame );
+
+        (!isNumber(+enterNumber)) ? (alert('Нужно ввести число'), checkAnsver()):'';
+        (+enterNumber === 0) ? (alert('Нужно ввести число больше нуля'), checkAnsver()):'';
+
+        const userCounterAnswer = decrementCounterAnswer();
+        if (userCounterAnswer === 0) {
+            const answer = confirm('Попытки закончились, хотите сыграть еще?');
+            if (answer) {
+                return game();
+            }
+            console.log ('Игра окончена null');
+            return; 
+        } else if (+enterNumber === numberGame) {
+            const again = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
+            if (again) {
+                return ;
+                // return game();
+            }
+            console.log ('Игра окончена null');
+            return;
+        } else if (+enterNumber < numberGame) {
+            alert('Загаданное число больше, осталось попыток : '+ userCounterAnswer); 
+            checkAnsver();
+        } else if (+enterNumber > numberGame) {
+            alert('Загаданное число меньше, осталось попыток : '+ userCounterAnswer); 
+            checkAnsver();
+        } 
+
+        startGame = start();
+        return startGame;
+
     }
     
+
+    //  startGame = start();
+    //  return startGame;
+
+    return checkAnsver;
+    
+
+    
+    
 }
+
+// game();
+
+play = game();
+
+play();
+
+
+
+
+
+
 
 
 
