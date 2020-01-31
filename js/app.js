@@ -5,7 +5,6 @@ let isNumber = function (number) {
 
 game();
 
-console.log();
 
 function game(){
 
