@@ -17,7 +17,7 @@ function game(){
     const numberGame = numFromGame();
  
     function counter() {
-        let counter = 1;
+        let counter = 3;
         const decrementCounter = function () {
             counter = counter -1;
             return counter; 
@@ -26,20 +26,18 @@ function game(){
     }
 
     function start() {
-        const enterGame = () => game();
+        let runGame;
+        return function enterGame() {
+            runGame = checkAnsver();
+        }
+        return runGame;
     }
-
     const decrementCounterAnswer = counter();
- 
-
     function checkAnsver(){
-
-
-        // (userCounterAnswer === 0) ? console.log ('Игра окончена'):'';
-
         
         let enterNumber = prompt('Угадай число от 1 до 100');
         if (enterNumber === null) {
+            alert('Прощальное сообщение');
             console.log ('Игра окончена null');
             return;
         }
@@ -60,8 +58,7 @@ function game(){
         } else if (+enterNumber === numberGame) {
             const again = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
             if (again) {
-                return ;
-                // return game();
+                return game();
             }
             console.log ('Игра окончена null');
             return;
@@ -72,35 +69,11 @@ function game(){
             alert('Загаданное число меньше, осталось попыток : '+ userCounterAnswer); 
             checkAnsver();
         } 
-
-        startGame = start();
-        return startGame;
+       return start();
 
     }
-    
-
-    //  startGame = start();
-    //  return startGame;
-
-    return checkAnsver;
-    
-
-    
-    
+     startGame = start();
+     startGame();
+   
 }
-
-// game();
-
-play = game();
-
-play();
-
-
-
-
-
-
-
-
-
-
+game();
